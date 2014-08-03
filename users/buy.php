@@ -70,7 +70,7 @@ redirect('contacts.php');
 							<td><textarea name="content" id="content" required rows='20' cols="30"></textarea></td>
 						</tr>
 						<tr>
-							<td><button type="submit" >Submit!</button></td>
+							<td><button type="submit" >Buy!</button></td>
 							<td><button type="reset">Clear fields</button></td>
 						</tr>
 					

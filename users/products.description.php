@@ -28,7 +28,7 @@ $results = $products_images->get($result['id']);
 			<h2><?=$result['title']?></h2>
 			<p> <em> <?=$result['content']?> </em> </p><br/>
 			<p>	<?=$result['price']?> &euro; </p><br>
-			<button type="submit">Buy it now!</button><br>
+			<a href="buy.php?id=<?=$result['id']?>"><img src="pictures/body/buy.png" width="200" height="50"></a> 
 			<br>
 			
 			<?php foreach ($results as $key => $value) { ?>

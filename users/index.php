@@ -9,7 +9,6 @@ $result = $products->getAll();
 
 
 
-
 ?>
 <html>
 <head>
@@ -44,7 +43,7 @@ $result = $products->getAll();
 			<img src="../admin/storage/<?=$value['image']?>" width="130" height="100">
 			
 			<p class=> <?=$value['content']?> </p>
-			<button type="submit" style="float: right;">BUY iT NOW</button>
+			<a href="buy.php?id=<?=$value['id']?>" style="float: right;"><img src="pictures/body/buy.png" width="200" height="50"></a> 
 			</div>
 
 			<?php } ?>
