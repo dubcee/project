@@ -25,7 +25,7 @@ class Products_images implements ICRUD {
 	public function get($id) {
 
 		$sql = '
-			SELECT products_images.name, products_images.products_id
+			SELECT *
 			FROM products_images 
 			WHERE products_id = '.$id;
 

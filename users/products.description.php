@@ -32,9 +32,9 @@ $results = $products_images->get($result['id']);
 			<br>
 			
 			<?php foreach ($results as $key => $value) { ?>
-			<div class="grid">
+			
 			<img src="../admin/storage/<?= $value['name']?>" width="250" height="175">
-			</div>
+			
 			<br>
 			<br>
 			<?php } ?>

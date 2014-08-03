@@ -6,6 +6,7 @@ require_once('../include/bootstrap.php');
 $products_images = new Products_images($db_connection);
 $result = $products_images->get($_GET['id']);
 
+
 if (isset($_GET['action'])) {
 
 	
