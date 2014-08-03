@@ -21,6 +21,7 @@ require_once('../admin/functions/validate.php');
 //require_once('functions/pages.php');
 //require_once('functions/products.php');
 
+
 require_once('../classes/IItem.php');
 require_once('../classes/ICRUD.php');
 require_once('../classes/Page.php');
@@ -35,4 +36,6 @@ require_once('../classes/User.php');
 require_once('../classes/Users.php');
 require_once('../classes/Contact.php');
 require_once('../classes/Contacts.php');
+require_once('../classes/Comment.php');
+require_once('../classes/Comments.php');
 ?>

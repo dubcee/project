@@ -4,6 +4,7 @@ require_once('../include/bootstrap.php');
 $products = new Products($db_connection);
 $result = $products->getAll();
 
+		
 
 if (isset($_GET['action'])) {
 
@@ -30,6 +31,7 @@ require_once('include/header.php');
 	<table>
 		<tr>
 			<th>iD</th>
+			<th>Promo</th>
 			<th width="50%">Продукт</th>
 			<th width="10%">Снимки</th>
 			<th>Действие</th>
@@ -39,13 +41,33 @@ require_once('include/header.php');
 		
 		<tr>
 			<td><?php echo $value['id']?></td>
+			<td>
+				<?php	
+
+						$sql = '
+						SELECT promotion
+						FROM products
+						WHERE id = ' .$value['id'];
+
+						$res = mysqli_query($db_connection, $sql);
+						$chk = mysqli_fetch_assoc($res);
+
+
+
+						if ($chk['promotion'] == 1) {
+							$promo = 'Yes';
+						}else {
+							$promo = 'No';
+						}
+						echo $promo;
+				?>
+
+			</td>
 			<td><?php echo $value['title']?></td>
 			<td><a href="products_images_add.php?id=<?=$value['id']?>"><?php echo $value['cnt']?><br>Добави / Изтрий</a></td>
 			<td><a href="products_edit.php?id=<?php echo $value['id']?>">Редактирай</a> / <a href="products.php?action=delete&id=<?=$value['id']?>">Изтрий</a></td>
 		</tr>
-		<?php
-		}
-		?>
+		<?php } ?>
 	</table>
 	<br>
 	<a href="products_add.php">Добави продукт!!!</a>

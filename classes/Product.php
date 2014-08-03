@@ -5,6 +5,7 @@ class Product implements IItem {
 	public $title;
 	public $content;
 	public $price;
+	public $promotion;
 
 
 }

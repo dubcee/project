@@ -4,13 +4,31 @@ require_once('../include/bootstrap.php');
 $products = new Products($db_connection);
 $data = $products->get($_GET['id']);
 
+$sql = '
+
+SELECT promotion
+FROM products
+WHERE id = ' .$_GET['id'];
+
+$res = mysqli_query($db_connection, $sql);
+$chk = mysqli_fetch_assoc($res);
+
+if ($chk['promotion'] == 1) {
+	$checked = 'checked';
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+	
+$promotionString = $_POST['promotion'];
 
 $product = new Product();
 		$product->title = $_POST['title'];
 		$product->content = $_POST['content'];
 		$product->price = $_POST['price'];
-		$products->edit($product);
+		$product->promotion = $promotionString;
+		$products->update($_GET['id'], $product);
 /*
 	
 	db_update('products', array(
@@ -46,7 +64,10 @@ require_once('include/header.php');
 		</label>
 		<br>
 		<br>
-		
+		<label>
+		Продукт в промоция
+		<input type="checkbox" id="promotion" value="1" name="promotion" <?=$checked?> >
+		</label>		
 		<br>
 		<button type="submit">Запази</button>
 		<button type="reset">Изчисти  промените</button>

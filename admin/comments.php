@@ -1,5 +1,8 @@
 <?php
 require_once('../include/bootstrap.php');
+require_once('functions/news.php');
+
+
 
 if (isset($_GET['action']) && $_GET['action'] == 'delete') {
     db_delete('comments', $_GET['comment_id']);

@@ -5,6 +5,7 @@ $news_s = new News_s($db_connection);
 $result = $news_s->getAll();
 
 
+
 if (isset($_GET['action'])) {
 
 	
@@ -29,6 +30,7 @@ require_once('include/header.php');
 <div class="content">
 	<table>
 		<tr>
+			<th width="5%">iD</th>
 			<th width="50%">Заглавие</th>
 			<th width="10%">Коментари</th>
 			<th>Действие</th>
@@ -37,6 +39,7 @@ require_once('include/header.php');
 		foreach ($result as $key => $value) { ?>
 		
 		<tr>
+			<td><?= $value['id'] ?></td>
 			<td><?php echo $value['title']?></td>
 			<td><a href="comments.php?id=<?=$value['id']?>"><?php echo $value['cnt']?></a></td>
 			<td><a href="news_edit.php?id=<?php echo $value['id']?>">Редактирай</a> / <a href="news.php?action=delete&id=<?=$value['id']?>">Изтрий</a></td>

@@ -50,7 +50,8 @@ class News_s implements ICRUD {
 	public function get($id) {
 
 		$sql = '
-			SELECT * FROM news 
+			SELECT * 
+			FROM news 
 			WHERE id = '.$id;
 
 		$res = mysqli_query($this->db, $sql);
@@ -61,8 +62,9 @@ class News_s implements ICRUD {
 	public function getAll() {
 
 		$sql = '
-		SELECT * 
-		FROM news';
+		SELECT id, title, date_added, image
+        FROM news        
+        GROUP BY id';
 		$res = mysqli_query($this->db, $sql);
 		$result = array();
 		while ( $row = mysqli_fetch_assoc($res) ) {

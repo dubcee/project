@@ -5,6 +5,7 @@ require_once('include/header.php');
 $contacts = new Contacts($db_connection);
 $result_users  = $contacts->getAll();
 
+
 /*$sql = "
 SELECT * 
 FROM users 

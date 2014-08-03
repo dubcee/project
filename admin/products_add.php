@@ -6,7 +6,10 @@ $result = $products->getAll();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	if ($_POST['title'] != '' && $_POST['content'] != '') {
+	$promotionString = $_POST['promotion'];
+
+
+	if ($_POST['title'] != '' && $_POST['content'] != '' && $_POST['price']) {
 
 		if ($_FILES['image']['tmp_name'] != '') {//tmp_name 
 			$filename = rand(1, 10000).$_FILES['image']['name'];
@@ -19,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$product->title = $_POST['title'];
 		$product->content = $_POST['content'];
 		$product->price = $_POST['price'];
+		$product->promotion = $promotionString;
 		$products->add($product);
 
 
@@ -67,7 +71,10 @@ require_once('include/header.php');
 			<input type="text" name="price">
 		</label>
 		<br>
-		
+		<label>
+		Продукт в промоция
+		<input type="checkbox" id="promotion" value="1" name="promotion" <?php echo (isset($_POST['promotion'])?'checked="checked"':'') ?> />
+		</label>	
 		<br>
 		<button type="submit">Запази</button>
 		<button type="reset">Изчисти</button>

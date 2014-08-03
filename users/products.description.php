@@ -4,8 +4,10 @@ require_once('functions/body/header.php');
 require_once('../include/bootstrap.php');
 
 $products = new Products($db_connection);
-$result = $products->getAll();
+$result = $products->get($_GET['id']);
 
+$products_images = new Products_images($db_connection);
+$results = $products_images->get($result['id']);
 
 
 
@@ -23,20 +25,22 @@ $result = $products->getAll();
 
 	<div class="container">
 		<div class="content">
-
-			<?php foreach ($result as $key => $value) { ?>
-			<div class="grid">
-			<a href="products.description.php?&id=<?=$value['id']?>"><h2><?=$value['title']?></h2></a><br/>	
+			<h2><?=$result['title']?></h2>
+			<p> <em> <?=$result['content']?> </em> </p><br/>
+			<p>	<?=$result['price']?> &euro; </p><br>
+			<button type="submit">Buy it now!</button><br>
+			<br>
 			
-			<img src="../admin/storage/<?=$value['image']?>" width="300" height="250" alt="No image yet">
+			<?php foreach ($results as $key => $value) { ?>
+			<div class="grid">
+			<img src="../admin/storage/<?= $value['name']?>" width="250" height="175">
 			</div>
 			<br>
 			<br>
-			<br>
-		
 			<?php } ?>
 		</div>
 	</div>
+
 
 	</section>
 	

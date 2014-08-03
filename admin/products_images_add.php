@@ -69,8 +69,10 @@ require_once('include/header.php');
 			Качете картинка
 			<input type="file" name="name">
 		</label>
+
 		<br>
-		<button type="submit">Запази</button>
+		<button type="submit">Запази</button><br>
+		<a href="products.php">Връщане към продукти</a><br><br>
 		
 
 	<table>

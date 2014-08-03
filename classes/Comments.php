@@ -1,6 +1,6 @@
 <?php
 
-class Products implements ICRUD {
+class Comments implements ICRUD {
 	private $db;
 
 	public function __construct($db) {
@@ -10,13 +10,12 @@ class Products implements ICRUD {
 
 	public function add(IItem $item) {
 		$sql = '
-			INSERT INTO products (title, content, promotion, price) 
+			INSERT INTO comments (name, content, date_added, news_id) 
 			VALUES (
-				"'.$item->title.'",
-				"'.$item->content.'",
-				"'. $item->promotion .'",
-				"'.$item->price.'"
-				
+				"' .$item->name. '",
+				"' .$item->content. '",
+				"' .$item->date_added. '",
+				"' .$item->news_id. '"
 			)
 		';
 		mysqli_query($this->db, $sql);
@@ -25,12 +24,11 @@ class Products implements ICRUD {
 	public function update($id, IItem $item) {
 
 		$sql = '
-			UPDATE products 
+			UPDATE comments 
 			SET 
-			title = "' . $item->title . '",
+			name = "' . $item->name . '",
 			content = "' . $item->content . '",
-			price = "' . $item->price . '",
-			promotion = "' . $item->promotion . '"
+			date_added = "' . $item->date_added . '"
 			WHERE id = ' . $id;
 	
 		mysqli_query($this->db, $sql);
@@ -41,31 +39,35 @@ class Products implements ICRUD {
 	public function delete($id) {
 
 		$sql = '
-			DELETE FROM products
-			 WHERE id = '. $id;
+			DELETE FROM comments 
+			WHERE id = '. $id;
 
 		mysqli_query($this->db, $sql);
 
 	}
 
-	public function get($id) {
+	public function get($news_id) {
 
 		$sql = '
-			SELECT * FROM products 
-			WHERE id = '.$id;
+		SELECT name, content, date_added
+        FROM comments
+        WHERE news_id = '.$news_id;
 
 		$res = mysqli_query($this->db, $sql);
-		return mysqli_fetch_assoc($res);
-
+		$result = array();
+		while ( $row = mysqli_fetch_assoc($res) ) {
+			$result[] = $row;
+		}
+		return $result;
+		
+		
 	}
 
 	public function getAll() {
 
 		$sql = '
-		SELECT a.*, b.name as image 
-		FROM products a
-		LEFT JOIN products_images b ON a.id = b.products_id
-		GROUP BY a.id';
+		SELECT * 
+		FROM comments';
 		$res = mysqli_query($this->db, $sql);
 		$result = array();
 		while ( $row = mysqli_fetch_assoc($res) ) {
@@ -75,4 +77,5 @@ class Products implements ICRUD {
 		return $result;
 
 	}
+
 }

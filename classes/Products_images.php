@@ -25,19 +25,17 @@ class Products_images implements ICRUD {
 	public function get($id) {
 
 		$sql = '
-			SELECT * FROM products_images 
+			SELECT products_images.name, products_images.products_id
+			FROM products_images 
 			WHERE products_id = '.$id;
 
 		$res = mysqli_query($this->db, $sql);
 		
 		$result = array();
-
-		while ( $row = mysqli_fetch_assoc($res) ) {
+		while ($row = mysqli_fetch_assoc($res)) {
 			$result[] = $row;
 		}
-
 		return $result;
-
 
 	}
 
@@ -71,7 +69,7 @@ class Products_images implements ICRUD {
 		$sql = '
 		SELECT * 
 		FROM products_images
-		WHERE id = '. $_GET['id']
+		'
 		;
 
 		$res = mysqli_query($this->db, $sql);
